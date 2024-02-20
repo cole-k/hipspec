@@ -25,7 +25,7 @@ flag Werror
     manual: True
 
 flag JSON
-    default: False
+    default: True
     manual: True
 
 library

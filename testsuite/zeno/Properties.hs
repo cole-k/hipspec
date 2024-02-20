@@ -170,106 +170,116 @@ prop_53 n xs
 prop_54 n m
   = ((m + n) - n =:= m)
 
-prop_55 n xs ys
+-- New property
+prop_55 i j k
+  = (i - j) - k =:= (i - k) - j
+
+prop_56 n xs ys
   = (drop n (xs ++ ys) =:= drop n xs ++ drop (n - len xs) ys)
 
-prop_56 n m xs
+prop_57 n m xs
   = (drop n (drop m xs) =:= drop (n + m) xs)
 
-prop_57 n m xs
+prop_58 n m xs
   = (drop n (take m xs) =:= take (m - n) (drop n xs))
 
-prop_58 n xs ys
+prop_59 n xs ys
   = (drop n (zip xs ys) =:= zip (drop n xs) (drop n ys))
 
-prop_59 xs ys
+prop_60 xs ys
   = ys =:= [] ==> last (xs ++ ys) =:= last xs
 
-prop_60 xs ys
+prop_61 xs ys
   = givenBool (not (null ys))
   ( (last (xs ++ ys) =:= last ys) )
 
-prop_61 xs ys
+prop_62 xs ys
   = (last (xs ++ ys) =:= lastOfTwo xs ys)
 
-prop_62 xs x
+prop_63 xs x
   = givenBool (not (null xs))
   ( (last (x:xs) =:= last xs) )
 
-prop_63 n xs
+prop_64 n xs
   = givenBool (n < len xs)
   ( (last (drop n xs) =:= last xs) )
 
-prop_64 x xs
+prop_65 x xs
   = (last (xs ++ [x]) =:= x)
 
-prop_65 i m =
+prop_66 i m =
   proveBool (i < S (m + i))
 
-prop_66 p xs
+prop_67 p xs
   = proveBool (len (filter p xs) <= len xs)
 
-prop_67 xs
+prop_68 xs
   = (len (butlast xs) =:= len xs - S Z)
 
-prop_68 n xs
+prop_69 n xs
   = proveBool (len (delete n xs) <= len xs)
 
-prop_69 n m
+prop_70 n m
   = proveBool (n <= (m + n))
 
-prop_70 m n
+prop_71 m n
   = givenBool (m <= n)
   ( proveBool (m <= S n) )
 
-prop_71 x y xs
+-- New property
+prop_72 x y xs
+  = givenBool (x < y)
+  ( elem x (ins y xs) =:= elem x xs )
+
+prop_73 x y xs
   = given (x == y =:= False)
   ( (elem x (ins y xs) =:= elem x xs) )
 
-prop_72 i xs
+prop_74 i xs
   = (rev (drop i xs) =:= take (len xs - i) (rev xs))
 
-prop_73 p xs
+prop_75 p xs
   = (rev (filter p xs) =:= filter p (rev xs))
 
-prop_74 i xs
+prop_76 i xs
   = (rev (take i xs) =:= drop (len xs - i) (rev xs))
 
-prop_75 n m xs
-  = (count n xs + count n [m] =:= count n (m : xs))
-
-prop_76 n m xs
+prop_77 n m xs
   = given (n == m =:= False)
   ( (count n (xs ++ [m]) =:= count n xs) )
 
-prop_77 x xs
+prop_78 n m xs
+  = (count n xs + count n [m] =:= count n (m : xs))
+
+prop_79 x xs
   = givenBool (sorted xs)
   ( proveBool (sorted (insort x xs)) )
 
-prop_78 xs
+prop_80 xs
   = proveBool (sorted (sort xs))
 
-prop_79 m n k
+prop_81 m n k
   = ((S m - n) - S k =:= (m - n) - k)
 
-prop_80 n xs ys
+prop_82 n xs ys
   = (take n (xs ++ ys) =:= take n xs ++ take (n - len xs) ys)
 
-prop_81 n m xs {- ys -}
+prop_83 n m xs {- ys -}
   = (take n (drop m xs) =:= drop m (take (n + m) xs))
 
-prop_82 n xs ys
+prop_84 n xs ys
   = (take n (zip xs ys) =:= zip (take n xs) (take n ys))
 
-prop_83 xs ys zs
+prop_85 xs ys zs
   = (zip (xs ++ ys) zs =:=
            zip xs (take (len xs) zs) ++ zip ys (drop (len xs) zs))
 
-prop_84 xs ys zs
+prop_86 xs ys zs
   = (zip xs (ys ++ zs) =:=
            zip (take (len ys) xs) ys ++ zip (drop (len ys) xs) zs)
 
-prop_85 xs ys
+-- new property
+prop_87 xs ys
   = (len xs =:= len ys) ==>
     (zip (rev xs) (rev ys) =:= rev (zip xs ys))
 
@@ -280,7 +290,6 @@ prop_04 :: Nat -> [Nat] -> Prop Nat
 prop_06 :: Nat -> Nat -> Prop Nat
 prop_07 :: Nat -> Nat -> Prop Nat
 prop_08 :: Nat -> Nat -> Nat -> Prop Nat
-prop_09 :: Nat -> Nat -> Nat -> Prop Nat
 prop_10 :: Nat -> Prop Nat
 prop_11 :: [a] -> Prop [a]
 prop_12 :: Nat -> (a1 -> a) -> [a1] -> Prop [a]
@@ -322,25 +331,38 @@ prop_51 :: [a] -> a -> Prop [a]
 prop_52 :: Nat -> [Nat] -> Prop Nat
 prop_53 :: Nat -> [Nat] -> Prop Nat
 prop_54 :: Nat -> Nat -> Prop Nat
-prop_55 :: Nat -> [a] -> [a] -> Prop [a]
-prop_56 :: Nat -> Nat -> [a] -> Prop [a]
+
+prop_55 :: Nat -> Nat -> Nat -> Prop Nat
+
+prop_56 :: Nat -> [a] -> [a] -> Prop [a]
 prop_57 :: Nat -> Nat -> [a] -> Prop [a]
-prop_58 :: Nat -> [a] -> [b] -> Prop [(a, b)]
-prop_64 :: Nat -> [Nat] -> Prop Nat
-prop_65 :: Nat -> Nat -> Prop Bool
-prop_66 :: (a -> Bool) -> [a] -> Prop Bool
-prop_67 :: [a] -> Prop Nat
-prop_68 :: Nat -> [Nat] -> Prop Bool
-prop_69 :: Nat -> Nat -> Prop Bool
-prop_72 :: Nat -> [a] -> Prop [a]
-prop_73 :: (a -> Bool) -> [a] -> Prop [a]
+prop_58 :: Nat -> Nat -> [a] -> Prop [a]
+prop_59 :: Nat -> [a] -> [b] -> Prop [(a, b)]
+prop_65 :: Nat -> [Nat] -> Prop Nat
+prop_66 :: Nat -> Nat -> Prop Bool
+prop_67 :: (a -> Bool) -> [a] -> Prop Bool
+prop_68 :: [a] -> Prop Nat
+prop_69 :: Nat -> [Nat] -> Prop Bool
+prop_70 :: Nat -> Nat -> Prop Bool
+prop_71 :: Nat -> Nat -> Prop Bool
+
+prop_72 :: Nat -> Nat -> [Nat] -> Prop Bool
+
+prop_73 :: Nat -> Nat -> [Nat] -> Prop Bool
 prop_74 :: Nat -> [a] -> Prop [a]
-prop_75 :: Nat -> Nat -> [Nat] -> Prop Nat
-prop_78 :: [Nat] -> Prop Bool
-prop_79 :: Nat -> Nat -> Nat -> Prop Nat
-prop_80 :: Nat -> [a] -> [a] -> Prop [a]
-prop_81 :: Nat -> Nat -> [a] -> Prop [a]
-prop_82 :: Nat -> [a] -> [b] -> Prop [(a, b)]
-prop_83 :: [a] -> [a] -> [b] -> Prop [(a, b)]
-prop_84 :: [a] -> [a1] -> [a1] -> Prop [(a, a1)]
-prop_85 :: [a] -> [b] -> Prop [(a, b)]
+prop_75 :: (a -> Bool) -> [a] -> Prop [a]
+prop_76 :: Nat -> [a] -> Prop [a]
+
+prop_77 :: Nat -> Nat -> [Nat] -> Prop Nat
+prop_78 :: Nat -> Nat -> [Nat] -> Prop Nat
+
+prop_79 :: Nat -> [Nat] -> Prop Bool
+prop_80 :: [Nat] -> Prop Bool
+prop_81 :: Nat -> Nat -> Nat -> Prop Nat
+prop_82 :: Nat -> [a] -> [a] -> Prop [a]
+prop_83 :: Nat -> Nat -> [a] -> Prop [a]
+prop_84 :: Nat -> [a] -> [b] -> Prop [(a, b)]
+
+prop_85 :: [a] -> [a] -> [b] -> Prop [(a, b)]
+prop_86 :: [a] -> [a1] -> [a1] -> Prop [(a, a1)]
+prop_87 :: [a] -> [b] -> Prop [(a, b)]

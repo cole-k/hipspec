@@ -1,4 +1,4 @@
-props := $(filter-out 81, $(shell seq -w 1 85))
+props := $(filter-out 81, $(shell seq -w 1 87))
 expensive_props = 81
 
 prop_prefix = prop_

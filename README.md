@@ -57,7 +57,18 @@ The property and some lemmas conjectured by QuickSpec have been proved! Success!
 
 ## Installation instructions
 
+### A note from the future
+Since HipSpec is an older package, you'll need to install
+[stack 1.9.3](https://github.com/commercialhaskell/stack/releases/tag/v1.9.3).
+
+Unpack it and put in your path (I called it `stack-1.9.3` and the Makefiles I
+modified will look for that executable instead of the hipspec executable).
+
+You can then build and run it using `stack-1.9.3`.
+
 HipSpec is maintained for GHC 7.8.3.
+
+### The rest of the installation instructions
 
 If you have an older version of GHC and cannot upgrade, try building at commit 2ba4d52c2c101a810dea4058496cf5f0da199b31.
 

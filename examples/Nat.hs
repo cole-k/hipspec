@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveDataTypeable #-}
 module Nat where
 
-import Prelude hiding ((+),(*))
+import Prelude hiding ((+),(*), max)
 import HipSpec
 import Data.Typeable
 
@@ -17,6 +17,10 @@ Z   + m = m
 (*) :: Nat -> Nat -> Nat
 S n * m = m + (n * m)
 Z   * m = Z
+
+max Z     y     = y
+max x     Z     = x
+max (S x) (S y) = S (max x y)
 
 -- prop_mul x y = x * y =:= y * x
 

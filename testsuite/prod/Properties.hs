@@ -165,3 +165,41 @@ prop_T49 x y = givenBool (x `elem` isort y) (proveBool (x `elem` y))
 prop_T50 :: Nat -> [Nat] -> Prop Nat
 prop_T50 x y = count x (isort y) =:= count x y
 
+prop_T75 :: [a] -> [a] -> Prop [a]
+prop_T75 x y = rev x ++ y =:= qrev x y
+
+prop_T76 :: [[a]] -> [a] -> Prop [a]
+prop_T76 x y = revflat x ++ y =:= qrevflat x y
+
+prop_T77 :: [a] -> [a] -> Prop [a]
+prop_T77 x y = rev (qrev x y) =:= (rev y) ++ x
+
+prop_T78 :: [a] -> [a] -> Prop [a]
+prop_T78 x y = rev (qrev x (rev y)) =:= y ++ x
+
+prop_T79 :: [a] -> [a] -> Prop [a]
+prop_T79 x y = rev (rev x ++ y) =:= rev y ++ x
+
+prop_T80 :: [a] -> [a] -> Prop [a]
+prop_T80 x y = rev (rev x ++ rev y) =:= y ++ x
+
+prop_T81 :: [a] -> [a] -> Prop [a]
+prop_T81 x y = qrev (qrev x y) [] =:= rev y ++ x
+
+prop_T82 :: [a] -> [a] -> Prop [a]
+prop_T82 x y = qrev (qrev x (rev y)) [] =:= y ++ x
+
+prop_T83 :: [a] -> [a] -> Prop [a]
+prop_T83 x y = rotate (length x) (x ++ y) =:= y ++ x
+
+prop_T84 :: Nat -> Nat -> Prop Nat
+prop_T84 x y = fac x * y =:= qfac x y
+
+prop_T85 :: Nat -> Nat -> Nat -> Prop Nat
+prop_T85 x y z = (x * y) + z =:= mult x y z
+
+prop_T86 :: Nat -> Nat -> Nat -> Prop Nat
+prop_T86 x y z = (exp x y) * z =:= qexp x y z
+
+prop_assoc_mult :: Nat -> Nat -> Nat -> Prop Nat
+prop_assoc_mult x y z = (x * y) * z =:= x * (y * z)
