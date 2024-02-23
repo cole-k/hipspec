@@ -1,88 +1,88 @@
-prop_name,prop_proven,time,num_lemmas,num_proved_lemmas,num_unproved_lemmas,proved_lemmas,unproved_lemmas,prop
-./01,True,0.337973,0,0,0,[],[],take n xs++drop n xs == xs
-./02,True,0.358626,0,0,0,[],[],count n xs+count n ys == count n (xs++ys)
-./03,True,0.184718,0,0,0,[],[],count n xs<=count n (xs++ys) == True
-./04,True,0.064678,0,0,0,[],[],S (count n xs) == count n (n:xs)
-./05,True,0.077146,0,0,0,[],[],n == x => S (count n xs) == count n (x:xs)
-./06,True,0.103574,0,0,0,[],[],n-(n+m) == Z
-./07,True,0.104588,0,0,0,[],[],(n+m)-n == m
-./08,True,0.117366,0,0,0,[],[],(k+m)-(k+n) == m-n
-./09,True,0.11515,0,0,0,[],[],(i-j)-k == i-(j+k)
-./10,True,0.019879,0,0,0,[],[],m-m == Z
-./11,True,0.032381,0,0,0,[],[],drop Z xs == xs
-./12,True,0.073542,0,0,0,[],[],drop n (map f xs) == map f (drop n xs)
-./13,True,0.038948,0,0,0,[],[],drop (S n) (x:xs) == drop n xs
-./14,True,0.191138,0,0,0,[],[],filter p (xs++ys) == filter p xs++filter p ys
-./15,True,0.034523,0,0,0,[],[],len (ins x xs) == S (len xs)
-./16,True,0.010182,0,0,0,[],[],xs == [] => last (x:xs) == x
-./17,True,0.016118,0,0,0,[],[],n<=Z == n==Z
-./18,True,0.054112,0,0,0,[],[],i<S (i+m) == True
-./19,True,0.0811,0,0,0,[],[],len (drop n xs) == len xs-n
-./20,False,8.141494,3,3,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False']",[],len (sort xs) == len xs
-./21,True,0.054276,0,0,0,[],[],n<=(n+m) == True
-./22,True,0.02959,0,0,0,[],[],max (max a b) c == max a (max b c)
-./23,True,0.021859,0,0,0,[],[],max a b == max b a
-./24,True,0.051401,0,0,0,[],[],max a b==a == b<=a
-./25,True,0.052989,0,0,0,[],[],max a b==b == a<=b
-./26,True,0.110211,0,0,0,[],[],elem x xs == True => elem x (xs++ys) == True
-./27,True,0.110169,0,0,0,[],[],elem x ys == True => elem x (xs++ys) == True
-./28,True,0.095404,0,0,0,[],[],elem x (xs++(x:[])) == True
-./29,True,0.036702,0,0,0,[],[],elem x (ins1 x xs) == True
-./30,True,4.205863,10,10,0,"['elem (S m) (ins Z ms) == elem (S m) ms', 'elem (S m) (ins m ms) == elem (S m) ms', 'elem m (ins m ms) == True', 'ins Z (ins m ms) == ins m (ins Z ms)', 'm==S m == False', 'm==m == True', 'm==n == n==m', 'S m<m == False', 'm<S m == True', 'm<m == False']",[],elem x (ins x xs) == True
-./31,True,14.189663,5,5,0,"['min (min m n) (min n o) == min m (min n o)', 'min m (S m) == m', 'min m (min m n) == min m n', 'min m m == m', 'min m n == min n m']",[],min (min a b) c == min a (min b c)
-./32,True,0.021079,0,0,0,[],[],min a b == min b a
-./33,True,0.056884,0,0,0,[],[],min a b==a == a<=b
-./34,True,0.046657,0,0,0,[],[],min a b==b == b<=a
-./35,True,0.015601,0,0,0,[],[],dropWhile prop_35_lambda xs == xs
-./36,True,0.01898,0,0,0,[],[],takeWhile prop_36_lambda xs == xs
-./37,True,0.043148,0,0,0,[],[],not (elem x (delete x xs)) == True
-./38,True,0.153086,0,0,0,[],[],count n (xs++(n:[])) == S (count n xs)
-./39,True,0.278885,0,0,0,[],[],count n (x:[])+count n xs == count n (x:xs)
-./40,True,0.030801,0,0,0,[],[],take Z xs == []
-./41,True,0.063839,0,0,0,[],[],take n (map f xs) == map f (take n xs)
-./42,True,0.035376,0,0,0,[],[],take (S n) (x:xs) == x:take n xs
-./43,True,0.248156,0,0,0,[],[],takeWhile p xs++dropWhile p xs == xs
-./44,True,0.160811,0,0,0,[],[],zip (x:xs) ys == zipConcat x xs ys
-./45,True,0.044074,0,0,0,[],[],"zip (x:xs) (y:ys) == (,) x y:zip xs ys"
-./46,True,0.033975,0,0,0,[],[],zip [] xs == []
-./47,True,6.427075,6,6,0,"['height (mirror xt) == height xt', 'mirror (mirror xt) == xt', 'max m (S m) == S m', 'max m (max n o) == max n (max m o)', 'max m m == m', 'max m n == max n m']",[],height (mirror a) == height a
-./48,True,0.108226,0,0,0,[],[],not (null xs) == True => butlast xs++(last xs:[]) == xs
-./49,True,0.426732,0,0,0,[],[],butlast (xs++ys) == butlastConcat xs ys
-./50,False,35.552829,8,8,0,"['m-m == Z', '(m-n)-o == (m-o)-n', 'm-S m == Z', 'S m-m == S Z', '(m-n)-S o == (m-o)-S n', '(m-n)-(n-m) == m-n', 'take (len xs) xs == xs', 'take (len xs) (x:xs) == butlast (x:xs)']",[],butlast xs == take (len xs-S Z) xs
-./51,True,0.100532,0,0,0,[],[],butlast (xs++(x:[])) == xs
-./52,False,6.283364,7,7,0,"['m==n == n==m', 'm==m == True', 'm==S m == False', 'xs++[] == xs', '(xs++ys)++zs == xs++(ys++zs)', 'rev xs++rev ys == rev (ys++xs)', 'rev (rev xs) == xs']",[],count n xs == count n (rev xs)
-./53,False,23.785862,10,10,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False', 'm==n == n==m', 'm==m == True', 'm==S m == False', 'insort Z (insort m ms) == insort m (insort Z ms)', 'count m (insort m ms) == S (count m ms)', 'count (S m) (insort Z ms) == count (S m) ms', 'insort Z (sort ms) == sort (insort Z ms)']",[],count n xs == count n (sort xs)
-./54,True,10.437407,14,14,0,"['S Z-(m+m) == S n-(m+n)', '(m+m)-(n+n) == (m-n)+(m-n)', '(m+n)-(n-o) == (m+o)-(o-n)', '(m+n)-m == n', 'm+(n-m) == n+(m-n)', '(m-n)-o == m-(n+o)', '(m-n)-(n-m) == m-n', '(m-n)-S o == (m-o)-S n', 'S m-m == S Z', 'm-S m == Z', '(m-n)-o == (m-o)-n', 'm-m == Z', 'm+(n+o) == n+(m+o)', 'm+n == n+m']",[],(m+n)-n == m
-./55,True,3.227253,0,0,0,[],[],(i-j)-k == (i-k)-j
-./56,True,1.308634,0,0,0,[],[],drop n (xs++ys) == drop n xs++drop (n-len xs) ys
-./57,True,3.208757,0,0,0,[],[],drop n (drop m xs) == drop (n+m) xs
-./58,True,1.198205,0,0,0,[],[],drop n (take m xs) == take (m-n) (drop n xs)
-./59,True,0.197988,0,0,0,[],[],drop n (zip xs ys) == zip (drop n xs) (drop n ys)
-./60,True,1.123393,0,0,0,[],[],ys == [] => last (xs++ys) == last xs
-./61,True,1.117597,0,0,0,[],[],not (null ys) == True => last (xs++ys) == last ys
-./62,True,1.123299,0,0,0,[],[],last (xs++ys) == lastOfTwo xs ys
-./63,True,0.040105,0,0,0,[],[],not (null xs) == True => last (x:xs) == last xs
-./64,True,0.142919,0,0,0,[],[],n<len xs == True => last (drop n xs) == last xs
-./65,True,1.116561,0,0,0,[],[],last (xs++(x:[])) == x
-./66,True,2.236062,10,10,0,"['(m+m)<(n+n) == m<n', '(m+n)<S n == (m+o)<S o', '(m+n)<(m+o) == n<o', '(m+n)<m == False', 'm<(m+n) == Z<n', 'S m<m == False', 'm<S m == True', 'm<m == False', 'm+(n+o) == n+(m+o)', 'm+n == n+m']",[],i<S (m+i) == True
-./67,False,2.105433,5,5,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False', 'filter p (filter q xs) == filter q (filter p xs)', 'filter p (filter p xs) == filter p xs']",[],len (filter p xs)<=len xs == True
-./68,True,0.058171,0,0,0,[],[],len (butlast xs) == len xs-S Z
-./69,False,4.236006,8,8,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False', 'm==n == n==m', 'm==m == True', 'm==S m == False', 'delete m (delete n ms) == delete n (delete m ms)', 'delete m (delete m ms) == delete m ms']",[],len (delete n xs)<=len xs == True
-./70,True,2.232735,10,10,0,"['(m+m)<=(n+n) == m<=n', 'S m<=(m+n) == S o<=(o+n)', '(m+n)<=(m+o) == n<=o', '(m+n)<=m == n<=Z', 'm<=(m+n) == True', 'S m<=m == False', 'm<=S m == True', 'm<=m == True', 'm+(n+o) == n+(m+o)', 'm+n == n+m']",[],n<=(m+n) == True
-./71,True,0.089234,0,0,0,[],[],m<=n == True => m<=S n == True
-./72,False,14.293332,10,10,0,"['m<m == False', 'm<S m == True', 'S m<m == False', 'm==n == n==m', 'm==m == True', 'm==S m == False', 'ins Z (ins m ms) == ins m (ins Z ms)', 'elem m (ins m ms) == True', 'elem (S m) (ins m ms) == elem (S m) ms', 'elem (S m) (ins Z ms) == elem (S m) ms']",[],x<y == True => elem x (ins y xs) == elem x xs
-./73,True,1.087335,0,0,0,[],[],x==y == False => elem x (ins y xs) == elem x xs
-./74,True,21.458121,19,19,0,"['take m xs++drop m xs == xs', 'drop (len xs) (xs++ys) == ys', 'take (len xs) (xs++ys) == xs', 'len (rev xs) == len xs', 'len (xs++ys) == len (ys++xs)', 'rev xs++rev ys == rev (ys++xs)', '(xs++ys)++zs == xs++(ys++zs)', 'xs++[] == xs', 'len xs-m == len (drop m xs)', 'drop (len xs) (drop m xs) == []', 'drop (len xs) xs == []', 'take (len xs) xs == xs', 'drop (S Z) (drop m xs) == drop (S m) xs', '(m-n)-(n-m) == m-n', '(m-n)-S o == (m-o)-S n', 'S m-m == S Z', 'm-S m == Z', '(m-n)-o == (m-o)-n', 'm-m == Z']",[],rev (drop i xs) == take (len xs-i) (rev xs)
-./75,True,1.353615,7,7,0,"['filter p (rev xs) == rev (filter p xs)', 'filter p xs++filter p ys == filter p (xs++ys)', 'filter p (filter p xs) == filter p xs', 'filter p (filter q xs) == filter q (filter p xs)', 'rev xs++rev ys == rev (ys++xs)', '(xs++ys)++zs == xs++(ys++zs)', 'xs++[] == xs']",[],rev (filter p xs) == filter p (rev xs)
-./76,True,10.554359,19,19,0,"['take m xs++drop m xs == xs', 'drop (len xs) (xs++ys) == ys', 'take (len xs) (xs++ys) == xs', 'len (rev xs) == len xs', 'len (xs++ys) == len (ys++xs)', 'rev xs++rev ys == rev (ys++xs)', '(xs++ys)++zs == xs++(ys++zs)', 'xs++[] == xs', 'len xs-m == len (drop m xs)', 'drop (len xs) (drop m xs) == []', 'drop (len xs) xs == []', 'take (len xs) xs == xs', 'drop (S Z) (drop m xs) == drop (S m) xs', '(m-n)-(n-m) == m-n', '(m-n)-S o == (m-o)-S n', 'S m-m == S Z', 'm-S m == Z', '(m-n)-o == (m-o)-n', 'm-m == Z']",[],rev (take i xs) == drop (len xs-i) (rev xs)
-./77,True,1.196146,0,0,0,[],[],n==m == False => count n (xs++(m:[])) == count n xs
-./78,True,1.348692,0,0,0,[],[],count n xs+count n (m:[]) == count n (m:xs)
-./79,False,8.251058,3,3,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False']",[],sorted xs == True => sorted (insort x xs) == True
-./80,False,8.204863,3,3,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False']",[],sorted (sort xs) == True
-./81,True,1.095259,0,0,0,[],[],(S m-n)-S k == (m-n)-k
-./82,True,1.564558,0,0,0,[],[],take n (xs++ys) == take n xs++take (n-len xs) ys
-./83,False,35.813592,5,5,0,"['m+n == n+m', 'm+(n+o) == n+(m+o)', 'drop m (drop n xs) == drop n (drop m xs)', 'drop (m+n) xs == drop m (drop n xs)', 'drop (m+m) (x:[]) == drop m (x:[])']",[],take n (drop m xs) == drop m (take (n+m) xs)
-./84,True,2.586228,0,0,0,[],[],take n (zip xs ys) == zip (take n xs) (take n ys)
-./85,True,1.846505,0,0,0,[],[],zip (xs++ys) zs == zip xs (take (len xs) zs)++zip ys (drop (len xs) zs)
-./86,True,1.734244,0,0,0,[],[],zip xs (ys++zs) == zip (take (len ys) xs) ys++zip (drop (len ys) xs) zs
-./87,False,18.703384,9,9,0,"['xs++[] == xs', '(xs++ys)++zs == xs++(ys++zs)', 'zip xs (xs++ys) == zip xs xs', 'zip (xs++ys) xs == zip xs xs', 'zip (xs++xs) (x:[]) == zip xs (x:[])', 'rev xs++rev ys == rev (ys++xs)', 'len (xs++ys) == len (ys++xs)', 'len (rev xs) == len xs', 'rev (rev xs) == xs']",[],len xs == len ys => zip (rev xs) (rev ys) == rev (zip xs ys)
+prop_name,prop_proven,time,num_lemmas_attempted,num_lemmas,num_proved_lemmas,num_unproved_lemmas,proved_lemmas,unproved_lemmas,prop
+./01,True,0.316206,1,0,0,0,[],[],take n xs++drop n xs == xs
+./02,True,0.351207,1,0,0,0,[],[],count n xs+count n ys == count n (xs++ys)
+./03,True,0.242477,1,0,0,0,[],[],count n xs<=count n (xs++ys) == True
+./04,True,0.073308,1,0,0,0,[],[],S (count n xs) == count n (n:xs)
+./05,True,0.077544,1,0,0,0,[],[],n == x => S (count n xs) == count n (x:xs)
+./06,True,0.110804,1,0,0,0,[],[],n-(n+m) == Z
+./07,True,0.109105,1,0,0,0,[],[],(n+m)-n == m
+./08,True,0.113371,1,0,0,0,[],[],(k+m)-(k+n) == m-n
+./09,True,0.113663,1,0,0,0,[],[],(i-j)-k == i-(j+k)
+./10,True,0.025878,1,0,0,0,[],[],m-m == Z
+./11,True,0.032314,0,0,0,0,[],[],drop Z xs == xs
+./12,True,0.07863,1,0,0,0,[],[],drop n (map f xs) == map f (drop n xs)
+./13,True,0.043802,0,0,0,0,[],[],drop (S n) (x:xs) == drop n xs
+./14,True,0.195854,1,0,0,0,[],[],filter p (xs++ys) == filter p xs++filter p ys
+./15,True,0.034547,1,0,0,0,[],[],len (ins x xs) == S (len xs)
+./16,True,0.016399,0,0,0,0,[],[],xs == [] => last (x:xs) == x
+./17,True,0.021035,0,0,0,0,[],[],n<=Z == n==Z
+./18,True,0.05571,1,0,0,0,[],[],i<S (i+m) == True
+./19,True,0.084373,1,0,0,0,[],[],len (drop n xs) == len xs-n
+./20,False,4.147263,7,3,3,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False']",[],len (sort xs) == len xs
+./21,True,0.062306,1,0,0,0,[],[],n<=(n+m) == True
+./22,True,0.029741,1,0,0,0,[],[],max (max a b) c == max a (max b c)
+./23,True,0.028395,1,0,0,0,[],[],max a b == max b a
+./24,True,0.052913,1,0,0,0,[],[],max a b==a == b<=a
+./25,True,0.0525,1,0,0,0,[],[],max a b==b == a<=b
+./26,True,0.110615,1,0,0,0,[],[],elem x xs == True => elem x (xs++ys) == True
+./27,True,0.11113,1,0,0,0,[],[],elem x ys == True => elem x (xs++ys) == True
+./28,True,0.094169,1,0,0,0,[],[],elem x (xs++(x:[])) == True
+./29,True,0.043922,1,0,0,0,[],[],elem x (ins1 x xs) == True
+./30,True,2.204218,12,10,10,0,"['elem (S m) (ins Z ms) == elem (S m) ms', 'elem (S m) (ins m ms) == elem (S m) ms', 'elem m (ins m ms) == True', 'ins Z (ins m ms) == ins m (ins Z ms)', 'm==S m == False', 'm==m == True', 'm==n == n==m', 'S m<m == False', 'm<S m == True', 'm<m == False']",[],elem x (ins x xs) == True
+./31,True,8.179479,11,5,5,0,"['min (min m n) (min n o) == min m (min n o)', 'min m (S m) == m', 'min m (min m n) == min m n', 'min m m == m', 'min m n == min n m']",[],min (min a b) c == min a (min b c)
+./32,True,0.022203,1,0,0,0,[],[],min a b == min b a
+./33,True,0.049853,1,0,0,0,[],[],min a b==a == a<=b
+./34,True,0.049994,1,0,0,0,[],[],min a b==b == b<=a
+./35,True,0.01986,0,0,0,0,[],[],dropWhile prop_35_lambda xs == xs
+./36,True,0.017366,1,0,0,0,[],[],takeWhile prop_36_lambda xs == xs
+./37,True,0.048174,1,0,0,0,[],[],not (elem x (delete x xs)) == True
+./38,True,0.141931,1,0,0,0,[],[],count n (xs++(n:[])) == S (count n xs)
+./39,True,0.2741,0,0,0,0,[],[],count n (x:[])+count n xs == count n (x:xs)
+./40,True,0.03445,0,0,0,0,[],[],take Z xs == []
+./41,True,0.066823,1,0,0,0,[],[],take n (map f xs) == map f (take n xs)
+./42,True,0.039999,0,0,0,0,[],[],take (S n) (x:xs) == x:take n xs
+./43,True,0.236147,1,0,0,0,[],[],takeWhile p xs++dropWhile p xs == xs
+./44,True,0.164816,0,0,0,0,[],[],zip (x:xs) ys == zipConcat x xs ys
+./45,True,0.046405,0,0,0,0,[],[],"zip (x:xs) (y:ys) == (,) x y:zip xs ys"
+./46,True,0.032746,0,0,0,0,[],[],zip [] xs == []
+./47,True,2.246299,7,6,6,0,"['height (mirror xt) == height xt', 'mirror (mirror xt) == xt', 'max m (S m) == S m', 'max m (max n o) == max n (max m o)', 'max m m == m', 'max m n == max n m']",[],height (mirror a) == height a
+./48,True,0.10316,1,0,0,0,[],[],not (null xs) == True => butlast xs++(last xs:[]) == xs
+./49,True,0.423126,1,0,0,0,[],[],butlast (xs++ys) == butlastConcat xs ys
+./50,False,21.583163,20,8,8,0,"['m-m == Z', '(m-n)-o == (m-o)-n', 'm-S m == Z', 'S m-m == S Z', '(m-n)-S o == (m-o)-S n', '(m-n)-(n-m) == m-n', 'take (len xs) xs == xs', 'take (len xs) (x:xs) == butlast (x:xs)']",[],butlast xs == take (len xs-S Z) xs
+./51,True,0.097975,1,0,0,0,[],[],butlast (xs++(x:[])) == xs
+./52,False,4.278481,8,7,7,0,"['m==n == n==m', 'm==m == True', 'm==S m == False', 'xs++[] == xs', '(xs++ys)++zs == xs++(ys++zs)', 'rev xs++rev ys == rev (ys++xs)', 'rev (rev xs) == xs']",[],count n xs == count n (rev xs)
+./53,False,11.797162,23,10,10,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False', 'm==n == n==m', 'm==m == True', 'm==S m == False', 'insort Z (insort m ms) == insort m (insort Z ms)', 'count m (insort m ms) == S (count m ms)', 'count (S m) (insort Z ms) == count (S m) ms', 'insort Z (sort ms) == sort (insort Z ms)']",[],count n xs == count n (sort xs)
+./54,True,9.609504,20,14,14,0,"['S Z-(m+m) == S n-(m+n)', '(m+m)-(n+n) == (m-n)+(m-n)', '(m+n)-(n-o) == (m+o)-(o-n)', '(m+n)-m == n', 'm+(n-m) == n+(m-n)', '(m-n)-o == m-(n+o)', '(m-n)-(n-m) == m-n', '(m-n)-S o == (m-o)-S n', 'S m-m == S Z', 'm-S m == Z', '(m-n)-o == (m-o)-n', 'm-m == Z', 'm+(n+o) == n+(m+o)', 'm+n == n+m']",[],(m+n)-n == m
+./55,True,0.034213,1,0,0,0,[],[],(i-j)-k == (i-k)-j
+./56,True,0.281379,1,0,0,0,[],[],drop n (xs++ys) == drop n xs++drop (n-len xs) ys
+./57,True,0.095198,1,0,0,0,[],[],drop n (drop m xs) == drop (n+m) xs
+./58,True,0.14284,1,0,0,0,[],[],drop n (take m xs) == take (m-n) (drop n xs)
+./59,True,0.123297,1,0,0,0,[],[],drop n (zip xs ys) == zip (drop n xs) (drop n ys)
+./60,True,0.08736,1,0,0,0,[],[],ys == [] => last (xs++ys) == last xs
+./61,True,0.095177,1,0,0,0,[],[],not (null ys) == True => last (xs++ys) == last ys
+./62,True,0.09216,1,0,0,0,[],[],last (xs++ys) == lastOfTwo xs ys
+./63,True,0.020916,0,0,0,0,[],[],not (null xs) == True => last (x:xs) == last xs
+./64,True,0.063004,1,0,0,0,[],[],n<len xs == True => last (drop n xs) == last xs
+./65,True,0.086678,1,0,0,0,[],[],last (xs++(x:[])) == x
+./66,True,1.202146,11,10,10,0,"['(m+m)<(n+n) == m<n', '(m+n)<S n == (m+o)<S o', '(m+n)<(m+o) == n<o', '(m+n)<m == False', 'm<(m+n) == Z<n', 'S m<m == False', 'm<S m == True', 'm<m == False', 'm+(n+o) == n+(m+o)', 'm+n == n+m']",[],i<S (m+i) == True
+./67,False,2.065697,6,5,5,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False', 'filter p (filter q xs) == filter q (filter p xs)', 'filter p (filter p xs) == filter p xs']",[],len (filter p xs)<=len xs == True
+./68,True,0.036064,1,0,0,0,[],[],len (butlast xs) == len xs-S Z
+./69,False,3.14243,9,8,8,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False', 'm==n == n==m', 'm==m == True', 'm==S m == False', 'delete m (delete n ms) == delete n (delete m ms)', 'delete m (delete m ms) == delete m ms']",[],len (delete n xs)<=len xs == True
+./70,True,2.20442,11,10,10,0,"['(m+m)<=(n+n) == m<=n', 'S m<=(m+n) == S o<=(o+n)', '(m+n)<=(m+o) == n<=o', '(m+n)<=m == n<=Z', 'm<=(m+n) == True', 'S m<=m == False', 'm<=S m == True', 'm<=m == True', 'm+(n+o) == n+(m+o)', 'm+n == n+m']",[],n<=(m+n) == True
+./71,True,0.018029,1,0,0,0,[],[],m<=n == True => m<=S n == True
+./72,False,8.292694,12,10,10,0,"['m<m == False', 'm<S m == True', 'S m<m == False', 'm==n == n==m', 'm==m == True', 'm==S m == False', 'ins Z (ins m ms) == ins m (ins Z ms)', 'elem m (ins m ms) == True', 'elem (S m) (ins m ms) == elem (S m) ms', 'elem (S m) (ins Z ms) == elem (S m) ms']",[],x<y == True => elem x (ins y xs) == elem x xs
+./73,True,0.065786,1,0,0,0,[],[],x==y == False => elem x (ins y xs) == elem x xs
+./74,True,7.329808,39,19,19,0,"['take m xs++drop m xs == xs', 'drop (len xs) (xs++ys) == ys', 'take (len xs) (xs++ys) == xs', 'len (rev xs) == len xs', 'len (xs++ys) == len (ys++xs)', 'rev xs++rev ys == rev (ys++xs)', '(xs++ys)++zs == xs++(ys++zs)', 'xs++[] == xs', 'len xs-m == len (drop m xs)', 'drop (len xs) (drop m xs) == []', 'drop (len xs) xs == []', 'take (len xs) xs == xs', 'drop (S Z) (drop m xs) == drop (S m) xs', '(m-n)-(n-m) == m-n', '(m-n)-S o == (m-o)-S n', 'S m-m == S Z', 'm-S m == Z', '(m-n)-o == (m-o)-n', 'm-m == Z']",[],rev (drop i xs) == take (len xs-i) (rev xs)
+./75,True,1.304831,9,7,7,0,"['filter p (rev xs) == rev (filter p xs)', 'filter p xs++filter p ys == filter p (xs++ys)', 'filter p (filter p xs) == filter p xs', 'filter p (filter q xs) == filter q (filter p xs)', 'rev xs++rev ys == rev (ys++xs)', '(xs++ys)++zs == xs++(ys++zs)', 'xs++[] == xs']",[],rev (filter p xs) == filter p (rev xs)
+./76,True,8.263944,39,19,19,0,"['take m xs++drop m xs == xs', 'drop (len xs) (xs++ys) == ys', 'take (len xs) (xs++ys) == xs', 'len (rev xs) == len xs', 'len (xs++ys) == len (ys++xs)', 'rev xs++rev ys == rev (ys++xs)', '(xs++ys)++zs == xs++(ys++zs)', 'xs++[] == xs', 'len xs-m == len (drop m xs)', 'drop (len xs) (drop m xs) == []', 'drop (len xs) xs == []', 'take (len xs) xs == xs', 'drop (S Z) (drop m xs) == drop (S m) xs', '(m-n)-(n-m) == m-n', '(m-n)-S o == (m-o)-S n', 'S m-m == S Z', 'm-S m == Z', '(m-n)-o == (m-o)-n', 'm-m == Z']",[],rev (take i xs) == drop (len xs-i) (rev xs)
+./77,True,0.205311,1,0,0,0,[],[],n==m == False => count n (xs++(m:[])) == count n xs
+./78,True,0.278565,1,0,0,0,[],[],count n xs+count n (m:[]) == count n (m:xs)
+./79,False,6.14598,6,3,3,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False']",[],sorted xs == True => sorted (insort x xs) == True
+./80,False,7.178265,9,3,3,0,"['m<=m == True', 'm<=S m == True', 'S m<=m == False']",[],sorted (sort xs) == True
+./81,True,0.035495,1,0,0,0,[],[],(S m-n)-S k == (m-n)-k
+./82,True,0.229394,1,0,0,0,[],[],take n (xs++ys) == take n xs++take (n-len xs) ys
+./83,False,22.094144,19,5,5,0,"['m+n == n+m', 'm+(n+o) == n+(m+o)', 'drop m (drop n xs) == drop n (drop m xs)', 'drop (m+n) xs == drop m (drop n xs)', 'drop (m+m) (x:[]) == drop m (x:[])']",[],take n (drop m xs) == drop m (take (n+m) xs)
+./84,True,0.134505,1,0,0,0,[],[],take n (zip xs ys) == zip (take n xs) (take n ys)
+./85,True,0.577292,1,0,0,0,[],[],zip (xs++ys) zs == zip xs (take (len xs) zs)++zip ys (drop (len xs) zs)
+./86,True,0.59001,1,0,0,0,[],[],zip xs (ys++zs) == zip (take (len ys) xs) ys++zip (drop (len ys) xs) zs
+./87,False,10.459932,14,9,9,0,"['xs++[] == xs', '(xs++ys)++zs == xs++(ys++zs)', 'zip xs (xs++ys) == zip xs xs', 'zip (xs++ys) xs == zip xs xs', 'zip (xs++xs) (x:[]) == zip xs (x:[])', 'rev xs++rev ys == rev (ys++xs)', 'len (xs++ys) == len (ys++xs)', 'len (rev xs) == len xs', 'rev (rev xs) == xs']",[],len xs == len ys => zip (rev xs) (rev ys) == rev (zip xs ys)

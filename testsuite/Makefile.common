@@ -11,7 +11,7 @@ results:
 
 define make_target
 results/$(1).json:
-	stack-1.9.3 exec hipspec -- Properties --auto --only=$(prop_prefix)$(1) $(HIPSPEC_BASE_FLAGS) $(HIPSPEC_FLAGS) --json=$$@
+	stack-1.9.3 exec hipspec -- Properties --auto --only=$(prop_prefix)$(1) $(HIPSPEC_BASE_FLAGS) $(HIPSPEC_FLAGS) --json=$$@ > results/$(1).log
 targets += results/$(1).json
 endef
 
@@ -19,7 +19,7 @@ $(foreach prop,$(props),$(eval $(call make_target,$(prop))))
 
 define make_expensive_target
 results/$(1).json:
-	stack-1.9.3 exec hipspec -- Properties --auto --only=$(prop_prefix)$(1) $(HIPSPEC_EXPENSIVE_FLAGS) $(HIPSPEC_BASE_FLAGS) $(HIPSPEC_FLAGS) --json=$$@
+	stack-1.9.3 exec hipspec -- Properties --auto --only=$(prop_prefix)$(1) $(HIPSPEC_EXPENSIVE_FLAGS) $(HIPSPEC_BASE_FLAGS) $(HIPSPEC_FLAGS) --json=$$@ > results/$(1).log
 targets += results/$(1).json
 endef
 
