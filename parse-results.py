@@ -4,6 +4,7 @@ import json
 import csv
 import sys
 import glob
+import re
 
 # In HipSpec's logs, this is the prefix for a line that contains a proved
 # property
@@ -29,10 +30,20 @@ def collect_lemma_from_line(log_line):
 
     return (False, None)
 
-def collect_lemmas_attempted(prop_name):
+def collect_evaluations_and_raw_equations(log_line):
+    m = re.match(r"Depth 3: .*?(\d+) evaluations, .*?(\d+) raw equations\.", log_line)
+    if m:
+        evaluations = int(m.group(1))
+        raw_equations = int(m.group(2))
+        return evaluations, raw_equations
+
+
+def collect_stats(prop_name):
     log_name = prop_name + '.log'
     proven_lemmas = set()
     lemmas = set()
+    num_evaluations = None
+    num_raw_eqs = None
     with open(log_name) as log_file:
         for line in log_file:
             (is_proven, lemma) = collect_lemma_from_line(line)
@@ -40,7 +51,12 @@ def collect_lemmas_attempted(prop_name):
                 lemmas.add(lemma)
                 if is_proven:
                     proven_lemmas.add(lemma)
-    return (proven_lemmas, lemmas)
+            evals_and_raw_eqs = collect_evaluations_and_raw_equations(line)
+            if evals_and_raw_eqs:
+                assert(not num_evaluations)
+                assert(not num_raw_eqs)
+                num_evaluations, num_raw_eqs = evals_and_raw_eqs
+    return (proven_lemmas, lemmas, num_evaluations, num_raw_eqs)
 
 def parse_lemma_name(lemma_name):
     '''
@@ -77,7 +93,7 @@ def read_result(filename):
     prop = (proved_props + unproved_props)[0]
 
     # parse log file
-    proven_lemmas, lemmas = collect_lemmas_attempted(prop_name)
+    proven_lemmas, lemmas, num_evals, num_raw_eqs, = collect_stats(prop_name)
     # they can differ by 1 because if the prop is proved it will be among the
     # proven lemmas
     assert(abs(len(proven_lemmas) - num_proved_lemmas) <= 1)
@@ -87,6 +103,8 @@ def read_result(filename):
         'time': time,
         'num_lemmas_attempted': len(lemmas),
         'num_lemmas': num_lemmas,
+        'num_raw_eqs': num_raw_eqs,
+        'num_evals': num_evals,
         'num_proved_lemmas': num_proved_lemmas,
         'num_unproved_lemmas': num_unproved_lemmas,
         'proved_lemmas': proved_lemmas,
@@ -99,7 +117,7 @@ if __name__ == '__main__':
     output_file = sys.argv[2]
     results = [read_result(filename) for filename in glob.glob(results_dir + '/*.json')]
     with open(output_file, 'w') as csvfile:
-        writer = csv.DictWriter(csvfile, ['prop_name', 'prop_proven', 'time', 'num_lemmas_attempted', 'num_lemmas', 'num_proved_lemmas', 'num_unproved_lemmas', 'proved_lemmas', 'unproved_lemmas', 'prop'])
+        writer = csv.DictWriter(csvfile, ['prop_name', 'prop_proven', 'time', 'num_lemmas_attempted', 'num_lemmas', 'num_raw_eqs', 'num_evals', 'num_proved_lemmas', 'num_unproved_lemmas', 'proved_lemmas', 'unproved_lemmas', 'prop'])
         writer.writeheader()
         for result in sorted(results, key=lambda result: result['prop_name']):
             writer.writerow(result)
